@@ -15,6 +15,7 @@ Since each shape is it's own special struct, you have options to store them:
 - Using some enum
 
 `
+
 enum Shape{
 
     Shape1,
@@ -24,6 +25,7 @@ enum Shape{
     ...
 
 }
+
 `
 
 Vec<Shape>
