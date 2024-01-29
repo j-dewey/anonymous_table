@@ -26,3 +26,6 @@ Using an enum can become a burden as adding and removing shapes to the game requ
 Using trait objects could work, but just aren't fun or easy to use.
 
 An [AnonymousTable] allows for simple storage and retrieval of data without having to do too much worrying about lifetimes or borrows (the table owns any data passed into it). 
+---
+### How is it used?
+An [AnonymousTable] can be made either with either the `new()` or `with_capacity()` methods. 
