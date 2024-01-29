@@ -26,8 +26,6 @@ enum Shape{
 
 }
 
-`
-
 Vec<Shape>
 `
 - Or having a Shape Trait and using `Vec<dyn Shape>`
