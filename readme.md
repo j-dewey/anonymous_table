@@ -14,18 +14,11 @@ Imagine you are designing a simple 2d game which is populated with different sha
 Since each shape is it's own special struct, you have options to store them:
 - Using some enum
 
-`
-
-enum Shape{
-
+`enum Shape{
     Shape1,
-
     Shape2,
-
     ...
-
 }
-
 Vec<Shape>
 `
 - Or having a Shape Trait and using `Vec<dyn Shape>`
