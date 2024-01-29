@@ -1,0 +1,11 @@
+[package]
+name = "anonymous_table"
+version = "0.2.1"
+edition = "2021"
+authors = ["jared-dewey <jcdewey@github>"]
+license = "MIT"
+description = "A way to store data regardless of type"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
