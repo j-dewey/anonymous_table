@@ -48,7 +48,7 @@ impl AnonymousRow{
     pub unsafe fn get_at_unchecked<T: Anonymous>(&self, index: usize) -> &T{
         self.0[index].get_ref()
     }
-    pub unsafe fn get_at_mut_unchecked<T: Anonymous>(&mut self, index: usize) -> &T{
+    pub unsafe fn get_at_mut_unchecked<T: Anonymous>(&mut self, index: usize) -> &mut T{
         self.0[index].get_mut()
     }
     // There is no removal since that would mess up table indices
