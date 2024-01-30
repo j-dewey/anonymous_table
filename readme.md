@@ -29,4 +29,4 @@ An [AnonymousTable] allows for simple storage and retrieval of data without havi
 
 ---
 ### How is it used?
-An [AnonymousTable] can be made either with either the `new()` or `with_capacity()` methods. 
+An [AnonymousTable] can be made either with either the `new()` or `with_capacity()` methods. 'with_capacity()' determines the number of rows that will be kept in the table. Cells are not accessed directly from the table or by the table, instead [AnonymousRow]s hold them. An [AnonymousRow] is made the same way as a table and can be pushed onto a table. With `[AnonymousRow].register_named_row()`, a row can be added to the table with a name. A name allows the table to keep track of the index of the row for future referencing.
