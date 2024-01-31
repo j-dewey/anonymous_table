@@ -109,7 +109,9 @@ impl AnonymousTable{
     }
 
     pub fn clear(&mut self){
-        self.table.rows.clear()
+        self.table.rows.clear();
+        self.cell_locations.clear();
+        self.names.clear();
     }
 
     pub fn len(&self) -> usize{
