@@ -3,7 +3,7 @@ pub use anonymous::Anonymous;
 mod table;
 pub use table::{
     AnonymousTable,
-    AnonymousRow,
-    TableIndex,
-    RowName
+    AnonymousRow
 };
+mod access;
+pub use access::*;

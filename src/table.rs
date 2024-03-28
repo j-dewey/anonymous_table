@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::anonymous::{Anonymous, AnonymousCell};
+use crate::{anonymous::{Anonymous, AnonymousCell}, RowName, TableIndex};
 
 ///
 /// An [AnonymousRow] represents a row in an [AnonymousTable]. It is considered anonymous
@@ -80,12 +80,6 @@ impl TableRaw{
 // the only guarantee is that cells in reserved columns will hold a value
 // of a specific type. When a reservation is requested, the first available
 // column will be reserved
-
-#[derive(Copy, Clone, Debug, Hash, Eq, PartialEq)]
-pub struct TableIndex{row: usize, column: usize}
-
-#[derive(Copy, Clone, Debug, Hash, Eq, PartialEq)]
-pub struct RowName(pub u8); // 255 named rows 
 
 #[derive(Debug)]
 pub struct AnonymousTable{
