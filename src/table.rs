@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::{anonymous::{Anonymous, AnonymousCell}, RowName, TableIndex};
+use crate::{anonymous::{Anonymous, AnonymousCell}, RowName, TableIndex, Tag};
 
 ///
 /// An [AnonymousRow] represents a row in an [AnonymousTable]. It is considered anonymous
@@ -87,7 +87,8 @@ pub struct AnonymousTable{
     cell_locations: HashMap<u16, Vec<TableIndex>>,
     // the location in this Vec represents column in table
     reserved: Vec<usize>,
-    names: HashMap<RowName, usize>
+    names: HashMap<RowName, usize>,
+    tags: HashMap<Tag, Vec<usize>>
 }
 
 impl AnonymousTable{
@@ -98,7 +99,8 @@ impl AnonymousTable{
             },
             cell_locations: HashMap::new(),
             reserved: Vec::new(),
-            names: HashMap::new()
+            names: HashMap::new(),
+            tags: HashMap::new()
         }
     }
 
@@ -200,5 +202,41 @@ impl AnonymousTable{
             vals.push(data);
         }
         vals
+    }
+
+    //
+    // Using [Tag]s
+    //
+
+    pub fn register_tagged_row(&mut self, row: AnonymousRow, tag: Tag){
+        let index = self.table.rows.len();
+        self.register_row(row.get_ids());
+        self.table.rows.push(row);
+        match self.tags.get_mut(&tag){
+            Some(vec) => vec.push(index),
+            None => { self.tags.insert(tag, vec![index]); }
+        }
+    }
+
+    pub fn registed_named_tagged_row(&mut self, row: AnonymousRow, tag: Tag, name: RowName){
+        let index = self.table.rows.len();
+        self.register_row(row.get_ids());
+        self.table.rows.push(row);
+        self.names.insert(name, index);
+        match self.tags.get_mut(&tag){
+            Some(vec) => vec.push(index),
+            None => { self.tags.insert(tag, vec![index]); }
+        }
+    }
+
+    pub fn get_tagged_rows(&self, tag: Tag) -> Option<Vec<&AnonymousRow>>{
+        let row_inds = self.tags.get(&tag)?;
+        let mut rows = Vec::with_capacity(row_inds.len());
+        for ind in row_inds{
+            rows.push(
+                self.table.get_row(*ind).expect("Tagged row location moved")
+            );
+        }
+        Some(rows)
     }
 }
